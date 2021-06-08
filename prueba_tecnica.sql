@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 04/06/2021 16:09:32
+ Date: 08/06/2021 13:19:21
 */
 
 SET NAMES utf8mb4;
@@ -46,7 +46,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -54,6 +54,255 @@ CREATE TABLE `migrations`  (
 INSERT INTO `migrations` VALUES (1, '2014_10_12_000000_create_users_table', 1);
 INSERT INTO `migrations` VALUES (2, '2014_10_12_100000_create_password_resets_table', 1);
 INSERT INTO `migrations` VALUES (3, '2019_08_19_000000_create_failed_jobs_table', 1);
+INSERT INTO `migrations` VALUES (20, '2016_06_01_000005_create_oauth_personal_access_clients_table', 3);
+INSERT INTO `migrations` VALUES (19, '2016_06_01_000004_create_oauth_clients_table', 3);
+INSERT INTO `migrations` VALUES (18, '2016_06_01_000003_create_oauth_refresh_tokens_table', 3);
+INSERT INTO `migrations` VALUES (17, '2016_06_01_000002_create_oauth_access_tokens_table', 3);
+INSERT INTO `migrations` VALUES (16, '2016_06_01_000001_create_oauth_auth_codes_table', 3);
+INSERT INTO `migrations` VALUES (15, '2021_06_02_184623_create_profiles_table', 2);
+
+-- ----------------------------
+-- Table structure for oauth_access_tokens
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_access_tokens`;
+CREATE TABLE `oauth_access_tokens`  (
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `scopes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_access_tokens_user_id_index`(`user_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_access_tokens
+-- ----------------------------
+INSERT INTO `oauth_access_tokens` VALUES ('49003089d17e48e33f7231a0c5087027ec05ee9d8fc16f8db177290cc009e6b38cd4f8f1e5d6d41c', 29, 2, NULL, '[]', 0, '2021-06-08 16:54:53', '2021-06-08 16:54:53', '2022-06-08 16:54:53');
+INSERT INTO `oauth_access_tokens` VALUES ('ceb8615647f6241af1e1aebe452caa5211baf0391c12d0d133fa642e2732a71be01f75bfc1d527f9', 29, 2, NULL, '[]', 0, '2021-06-08 16:54:59', '2021-06-08 16:54:59', '2022-06-08 16:54:59');
+INSERT INTO `oauth_access_tokens` VALUES ('11bf34f9f0df1f8997def54ab88e9c1d775cbd0729bfd9210157e110722cbea87a281ca203eab67c', 29, 2, NULL, '[]', 0, '2021-06-08 16:55:45', '2021-06-08 16:55:45', '2022-06-08 16:55:45');
+INSERT INTO `oauth_access_tokens` VALUES ('8253cadda34c30851d36153e91d63cdaa06f7d86c1597241de68cea6497342b5fac45512456b75ad', 29, 2, NULL, '[]', 0, '2021-06-08 16:56:31', '2021-06-08 16:56:31', '2022-06-08 16:56:31');
+INSERT INTO `oauth_access_tokens` VALUES ('b195a7fcf14d97d04ae8f980d083dfd1ab11763cbeb32d071f2588697596d2773303c7f2546edb14', 29, 2, NULL, '[]', 0, '2021-06-08 16:56:37', '2021-06-08 16:56:37', '2022-06-08 16:56:37');
+INSERT INTO `oauth_access_tokens` VALUES ('f7efecea2e6ad6805e734ca51774d70b316733eefa1567f54b6a49f442a1206fc1f67fb47d00b99c', 29, 2, NULL, '[]', 0, '2021-06-08 17:00:01', '2021-06-08 17:00:01', '2022-06-08 17:00:01');
+INSERT INTO `oauth_access_tokens` VALUES ('be8d31631d62850b757d208b9e6b4bb7989825e9d8402b57949bc6402d50dcaea8e856d8a7b7b109', 29, 2, NULL, '[]', 0, '2021-06-08 17:00:06', '2021-06-08 17:00:06', '2022-06-08 17:00:06');
+INSERT INTO `oauth_access_tokens` VALUES ('961e572cfa3fef0ead0a440a2b8a8a99c57e596e214d4afcc5129c9b377daaccf32daee2f66c0f30', 29, 2, NULL, '[]', 0, '2021-06-08 17:03:53', '2021-06-08 17:03:53', '2022-06-08 17:03:53');
+INSERT INTO `oauth_access_tokens` VALUES ('24bea1c5414f46ad0cb3609cb42588e41dde746e9bb8066ef63ccd91c8e1c0ad0c319508345503ba', 29, 2, NULL, '[]', 0, '2021-06-08 17:03:56', '2021-06-08 17:03:56', '2022-06-08 17:03:56');
+INSERT INTO `oauth_access_tokens` VALUES ('0f8ab881cbe38621337ebbd6f327da3a22fd1a6795f93dead5507f6f4d2b29b9553d10e992ebc363', 29, 2, NULL, '[]', 0, '2021-06-08 17:04:31', '2021-06-08 17:04:31', '2022-06-08 17:04:31');
+INSERT INTO `oauth_access_tokens` VALUES ('d3abc7ac9d3e7b5566920bb63a7f5a83aa1f54335f366fbd981cef35306c8d0c77564f9f6847dbf3', 29, 2, NULL, '[]', 0, '2021-06-08 17:04:35', '2021-06-08 17:04:35', '2022-06-08 17:04:35');
+INSERT INTO `oauth_access_tokens` VALUES ('e62816d6e05d7c2917291d8465e858180d41b266ee618525346d84d47ea653e30a4a2e09d2e37bb1', 29, 2, NULL, '[]', 0, '2021-06-08 17:04:49', '2021-06-08 17:04:49', '2022-06-08 17:04:49');
+INSERT INTO `oauth_access_tokens` VALUES ('526828b9dc67b9d26d8e17138bb0f81294445d1acf356be33fb303752dbcd2e56ea47426d7033488', 29, 2, NULL, '[]', 0, '2021-06-08 17:04:55', '2021-06-08 17:04:55', '2022-06-08 17:04:55');
+INSERT INTO `oauth_access_tokens` VALUES ('18bb5de1752ca7f3bae7470e330b628987eb319c7f928d06cda4f733b31362d2b4adbf472365e0ae', 29, 2, NULL, '[]', 0, '2021-06-08 17:07:18', '2021-06-08 17:07:18', '2022-06-08 17:07:18');
+INSERT INTO `oauth_access_tokens` VALUES ('6c291b131bbe0d423419f38b4b818a110290902bd1ae4b1b1ab8335d0336e12f8728d6337ecebce2', 29, 2, NULL, '[]', 0, '2021-06-08 17:07:21', '2021-06-08 17:07:21', '2022-06-08 17:07:21');
+INSERT INTO `oauth_access_tokens` VALUES ('1d459952e91f01a6323bbb1abb43868839ebb465a9a07fc66d66e3188021e32508089dd90567372c', 29, 2, NULL, '[]', 0, '2021-06-08 17:08:40', '2021-06-08 17:08:40', '2022-06-08 17:08:40');
+INSERT INTO `oauth_access_tokens` VALUES ('f75e0d0d1382df62a42760d58dce93374b63aeb0cfbe354b69a5ca92aa9c18b861ac89ae1efa1042', 29, 2, NULL, '[]', 0, '2021-06-08 17:08:42', '2021-06-08 17:08:42', '2022-06-08 17:08:42');
+INSERT INTO `oauth_access_tokens` VALUES ('36e622e1e48419bfd0c22f23caf098778c7a0713d2143aa389882ec6e587fbbb8c4f30f78e27c7dc', 29, 2, NULL, '[]', 0, '2021-06-08 17:09:22', '2021-06-08 17:09:22', '2022-06-08 17:09:22');
+INSERT INTO `oauth_access_tokens` VALUES ('635c6451db153c8f9b97ce3dd13d57dc90834ce0677bdfc57b2647faf0806caf1ffdc9ee076466a1', 29, 2, NULL, '[]', 0, '2021-06-08 17:09:42', '2021-06-08 17:09:42', '2022-06-08 17:09:42');
+INSERT INTO `oauth_access_tokens` VALUES ('49c36b71643329309e1d15528f48d6aa931a2404d83b4e3fd4241a29d8a123065742d9f7d34b8b15', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:00', '2021-06-08 17:11:00', '2022-06-08 17:11:00');
+INSERT INTO `oauth_access_tokens` VALUES ('2cc086a6ffd5afc40f56e0f24d44b1886e28c8cc0b7dde9e0c400ba876edb136f8087e1130425f38', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:00', '2021-06-08 17:11:00', '2022-06-08 17:11:00');
+INSERT INTO `oauth_access_tokens` VALUES ('aadfec84ca171ba491bab5402c17cb351b3b09dc297be96c3f4ceca7a27832be29bcbcab133ce2e1', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:01', '2021-06-08 17:11:01', '2022-06-08 17:11:01');
+INSERT INTO `oauth_access_tokens` VALUES ('a6984826569d37c29452b8596881b538bbb08e12ad88efe2aca35c3e973b6a77d8b8b0b23e142d63', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:45', '2021-06-08 17:11:45', '2022-06-08 17:11:45');
+INSERT INTO `oauth_access_tokens` VALUES ('4e43b6f4bf617bf21c1a71a9d60ab656e34e28060bd16d05ca7973af1b7ed5d22b52df280d7587d4', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:46', '2021-06-08 17:11:46', '2022-06-08 17:11:46');
+INSERT INTO `oauth_access_tokens` VALUES ('8d08795c851c0c618d07e45e6b9bad00ec7ff165010859b4e6259f27dee32cc865d29abc6233f3a7', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:47', '2021-06-08 17:11:47', '2022-06-08 17:11:47');
+INSERT INTO `oauth_access_tokens` VALUES ('851f947a59f47cfe6b8024e6627570ac389c243c3bed57272092557f3a9d76d569051a44ec6d5438', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:49', '2021-06-08 17:11:49', '2022-06-08 17:11:49');
+INSERT INTO `oauth_access_tokens` VALUES ('74ba439d7051e6309afa5bdce91e4dc73825f82807d3ed19d22806b67efa95490a5fa477c4275991', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:51', '2021-06-08 17:11:51', '2022-06-08 17:11:51');
+INSERT INTO `oauth_access_tokens` VALUES ('e9a87eb6efefec24a8b9d677cf9515baf80b4d67eccc08716d2b5c112d27727c67f534d54cde52ac', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:52', '2021-06-08 17:11:52', '2022-06-08 17:11:52');
+INSERT INTO `oauth_access_tokens` VALUES ('328376c4208f4b40775310f8365d283cdd0e917114a13a29b435d07d41c6dba36a5a63716c8c022c', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:53', '2021-06-08 17:11:53', '2022-06-08 17:11:53');
+INSERT INTO `oauth_access_tokens` VALUES ('b94e7eef30aac6bda42b2d8d3d1cb445417229949429491565e5db5a933c66cb5b53c4e97d38521d', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:54', '2021-06-08 17:11:54', '2022-06-08 17:11:54');
+INSERT INTO `oauth_access_tokens` VALUES ('98fe77c57dbc4f66f7f15d2361394514c9a52d745438a26137b41c1184efe42f05bbf09ea6d7f30d', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:55', '2021-06-08 17:11:55', '2022-06-08 17:11:55');
+INSERT INTO `oauth_access_tokens` VALUES ('895bf56755b2f0987c2695b7c37ceb860036442652df63866686fd8e7dc06f196905862d85a759c8', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:55', '2021-06-08 17:11:55', '2022-06-08 17:11:55');
+INSERT INTO `oauth_access_tokens` VALUES ('c1c19429e95119c8401d445f6236c087b39c6081209cc0532f13d960abb208e7e23ba9a6bdfc8d67', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:56', '2021-06-08 17:11:56', '2022-06-08 17:11:56');
+INSERT INTO `oauth_access_tokens` VALUES ('719ec69fb4837c74a204617c2df1c9a6b89124947efb008673cb4b2c086da363b924abe3008ee818', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:57', '2021-06-08 17:11:57', '2022-06-08 17:11:57');
+INSERT INTO `oauth_access_tokens` VALUES ('1677264b7561e6bf22bb5d0613f4ec8d6fc8472e22a5696c65fe65dc56d4bd6607d96d1cc2e8106d', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:58', '2021-06-08 17:11:58', '2022-06-08 17:11:58');
+INSERT INTO `oauth_access_tokens` VALUES ('d4e41171aa973469460b788a04ffebe864df4abc3a7ba1707adc6ab16c68a6a796b9f2932a9f4791', 29, 2, NULL, '[]', 0, '2021-06-08 17:11:59', '2021-06-08 17:11:59', '2022-06-08 17:11:59');
+INSERT INTO `oauth_access_tokens` VALUES ('20da8b9e094b3da5b22742875b55b99e9806ff878b12e23a334545319d841e87a55997d34553433c', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:00', '2021-06-08 17:12:00', '2022-06-08 17:12:00');
+INSERT INTO `oauth_access_tokens` VALUES ('830a0fa5117f47ac63bf40cccbbb46d38b098052ba6859f8efb13f02529d2b50a21f40883f8ed225', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:01', '2021-06-08 17:12:01', '2022-06-08 17:12:01');
+INSERT INTO `oauth_access_tokens` VALUES ('a4aca4aceec9886cafbbd270090aad249208e718e126e32450fbccad0e0c071701a456c92e2d5858', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:02', '2021-06-08 17:12:02', '2022-06-08 17:12:02');
+INSERT INTO `oauth_access_tokens` VALUES ('1e792d3a5a7398499d1f175384c071f524e31bc5daebfaaa9f8797bc03601f8e98ce3682c4ad0110', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:03', '2021-06-08 17:12:03', '2022-06-08 17:12:03');
+INSERT INTO `oauth_access_tokens` VALUES ('84f078785ce0d1a17a1c4b917d6c460c4ad81c053af8f3cdd36cc03815486fc47f5c11ca22035026', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:34', '2021-06-08 17:12:34', '2022-06-08 17:12:34');
+INSERT INTO `oauth_access_tokens` VALUES ('4ae4a7339e9bb5e69dda25df7e599b7a251194a21882b9ba7fa60133e28ddc785eec17f7a2d8c455', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:35', '2021-06-08 17:12:35', '2022-06-08 17:12:35');
+INSERT INTO `oauth_access_tokens` VALUES ('6470a4e9aa13a65c47358f936d32d523260124bb43386227e251d099777e4b83982d09d3ab788eeb', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:36', '2021-06-08 17:12:36', '2022-06-08 17:12:36');
+INSERT INTO `oauth_access_tokens` VALUES ('c05216833e1864035bdd660259561c34fa9023defec509479d07984911570830106025300333a219', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:37', '2021-06-08 17:12:37', '2022-06-08 17:12:37');
+INSERT INTO `oauth_access_tokens` VALUES ('e5ef25e943eb70d973dde0dc5f400fb53cb783a5d1e7412c4e0cd2b222691bc5ae51d57551a49ebc', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:38', '2021-06-08 17:12:38', '2022-06-08 17:12:38');
+INSERT INTO `oauth_access_tokens` VALUES ('ab595936fb610bdbe9d134efebb9abcd5fa42b4a5c53c3907780c47c9fc1eb0a58ec997ef5cfab76', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:39', '2021-06-08 17:12:39', '2022-06-08 17:12:39');
+INSERT INTO `oauth_access_tokens` VALUES ('f8ceb2bb584323093ac44931382330c7d1a445b2e21bf9d33838aeafc45e4cee442d3f59745b6c69', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:41', '2021-06-08 17:12:41', '2022-06-08 17:12:41');
+INSERT INTO `oauth_access_tokens` VALUES ('5ffe8a191152118c8b778298b591ff3fdd2a594b37fc862f43e8b5d50c7880d1ae623849aa976d90', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:42', '2021-06-08 17:12:42', '2022-06-08 17:12:42');
+INSERT INTO `oauth_access_tokens` VALUES ('1dbf46cc998f3729a4338e10c44cdf3233f9aafa29567937d6d261aac6ea45363a48ba2a4f590aa0', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:43', '2021-06-08 17:12:43', '2022-06-08 17:12:43');
+INSERT INTO `oauth_access_tokens` VALUES ('34bfef70853320aa1e47df590ed0d102f90fae0815f287c5afa3e2823840a266ee8246bf86c28aae', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:44', '2021-06-08 17:12:44', '2022-06-08 17:12:44');
+INSERT INTO `oauth_access_tokens` VALUES ('10dbcaf67870580b84cb669f9240fc6409a6f3ba537e483349633bec9ad64cc34c2ff7630dafd48a', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:45', '2021-06-08 17:12:45', '2022-06-08 17:12:45');
+INSERT INTO `oauth_access_tokens` VALUES ('6185b7ab58445e431449b591934c9b3c943581f5987a91475509eb188923d07fa29dc0703fb19c4a', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:46', '2021-06-08 17:12:46', '2022-06-08 17:12:46');
+INSERT INTO `oauth_access_tokens` VALUES ('2e4b1a14806a5d1645a40ba29f7b6c9a4aad285b670477baa4455d97662d19f4cedefcb5b44f56a6', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:47', '2021-06-08 17:12:47', '2022-06-08 17:12:47');
+INSERT INTO `oauth_access_tokens` VALUES ('758b25bbe72873a95cb9eb28f2ab80912caebcdca2617375381b14b39c91438fd1ff643d04e0e194', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:48', '2021-06-08 17:12:48', '2022-06-08 17:12:48');
+INSERT INTO `oauth_access_tokens` VALUES ('c6abfc6da814bc447170256daff01d4d9bb7d1e37b0a2173e23db5493d0dcbfb4fb10de5cfc46e12', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:48', '2021-06-08 17:12:48', '2022-06-08 17:12:48');
+INSERT INTO `oauth_access_tokens` VALUES ('4cc9d78a7cf28d33d16f35404ff72c347de4ae132a5ecdb6dd8140c31e269f26a45bb01a26f457eb', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:49', '2021-06-08 17:12:49', '2022-06-08 17:12:49');
+INSERT INTO `oauth_access_tokens` VALUES ('425c4c162473532f1c2b022af4fe057eec8a763a9ff52bf7e0b2236c8ba63e88603c079bdaa73cf1', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:50', '2021-06-08 17:12:50', '2022-06-08 17:12:50');
+INSERT INTO `oauth_access_tokens` VALUES ('1c3772b646aee078206139de306eb9ebef3b7c38869cec7fb70bc7efd7f64678a983a177f2a7b645', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:51', '2021-06-08 17:12:51', '2022-06-08 17:12:51');
+INSERT INTO `oauth_access_tokens` VALUES ('925e8acfd1d7510ce3e9ca3b6b906cbbb6fd464f3ce2431f80939b47f523ca1870372cd3710c31b9', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:52', '2021-06-08 17:12:52', '2022-06-08 17:12:52');
+INSERT INTO `oauth_access_tokens` VALUES ('a6565a7aea2468c63c1e25e46fa9348ea1a687edca982267b46ce02e47ff3aff240a9fcf23b73f4d', 29, 2, NULL, '[]', 0, '2021-06-08 17:12:53', '2021-06-08 17:12:53', '2022-06-08 17:12:53');
+INSERT INTO `oauth_access_tokens` VALUES ('07758b6721393c4cac2dc050960975685d77a134258cc11873a11e194a0a876377457cdda3f0fac6', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:06', '2021-06-08 17:13:06', '2022-06-08 17:13:06');
+INSERT INTO `oauth_access_tokens` VALUES ('09150b2fc1b37777ad7a7d4d77641e2410730fe431daad818f107e3dc3ac8b0932ad14c62f1d172b', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:07', '2021-06-08 17:13:07', '2022-06-08 17:13:07');
+INSERT INTO `oauth_access_tokens` VALUES ('271235be33ae3230ba52851418773bb020511e0f21181fd4cf35f6235c83cce98183350fb898bd62', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:08', '2021-06-08 17:13:08', '2022-06-08 17:13:08');
+INSERT INTO `oauth_access_tokens` VALUES ('14bccc0ee3613d689a37b9196cb11d12c52878edf761a5868c929955d1907c08e65e7e23854cf1c2', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:10', '2021-06-08 17:13:10', '2022-06-08 17:13:10');
+INSERT INTO `oauth_access_tokens` VALUES ('b6bd83c473eb58ddf4b757c4746b5044ea6c6189bd275d8fbf0046e0d301750a1935190ddcb33245', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:11', '2021-06-08 17:13:11', '2022-06-08 17:13:11');
+INSERT INTO `oauth_access_tokens` VALUES ('f7e9cc1bc3c2fb01895e64750ce6ab7a1ef39898900f4b42eedd503ed70c16b42a483b7616d00463', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:12', '2021-06-08 17:13:12', '2022-06-08 17:13:12');
+INSERT INTO `oauth_access_tokens` VALUES ('090fe6bb95f6f4626f19665e3d6c7547dc814eea5013b7bace609db6cb62d3561f1301fff97a575e', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:13', '2021-06-08 17:13:13', '2022-06-08 17:13:13');
+INSERT INTO `oauth_access_tokens` VALUES ('2d7587f64a35d5233165d44fa349cfc2cfb82e7c5585470630c1fa24dd36ef6d6b476e51f6aa8641', 29, 2, NULL, '[]', 0, '2021-06-08 17:13:14', '2021-06-08 17:13:14', '2022-06-08 17:13:14');
+
+-- ----------------------------
+-- Table structure for oauth_auth_codes
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_auth_codes`;
+CREATE TABLE `oauth_auth_codes`  (
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `scopes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_auth_codes_user_id_index`(`user_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_auth_codes
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for oauth_clients
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_clients`;
+CREATE TABLE `oauth_clients`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) UNSIGNED NULL DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `provider` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `redirect` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_clients_user_id_index`(`user_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_clients
+-- ----------------------------
+INSERT INTO `oauth_clients` VALUES (1, NULL, 'Laravel Personal Access Client', 'BToh2LU2uERfxOK5SjKAO9SVExOnnz7Kbzc28ASP', NULL, 'http://localhost', 1, 0, 0, '2021-06-08 15:20:29', '2021-06-08 15:20:29');
+INSERT INTO `oauth_clients` VALUES (2, NULL, 'Laravel Password Grant Client', 'KX9yax1gXD5ltR15715JdyrdEHR7RXKW8TKIwpdS', 'users', 'http://localhost', 0, 1, 0, '2021-06-08 15:20:29', '2021-06-08 15:20:29');
+
+-- ----------------------------
+-- Table structure for oauth_personal_access_clients
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_personal_access_clients`;
+CREATE TABLE `oauth_personal_access_clients`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of oauth_personal_access_clients
+-- ----------------------------
+INSERT INTO `oauth_personal_access_clients` VALUES (1, 1, '2021-06-08 15:20:29', '2021-06-08 15:20:29');
+
+-- ----------------------------
+-- Table structure for oauth_refresh_tokens
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_refresh_tokens`;
+CREATE TABLE `oauth_refresh_tokens`  (
+  `id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `oauth_refresh_tokens_access_token_id_index`(`access_token_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oauth_refresh_tokens
+-- ----------------------------
+INSERT INTO `oauth_refresh_tokens` VALUES ('b010ffaa38a37f522ed5863b5d18d572a88d44b6eb4e7f917f47549f71f4ef541337279bcbebc64f', '67cec99d3b278e1faf59a51a44366315e042c4819b03fa2225a034e2f801a9de02ba581947b29094', 0, '2022-06-08 15:56:30');
+INSERT INTO `oauth_refresh_tokens` VALUES ('ca7921007e2f8b821f6bc6a01daaa5452b4c8ca24d7bbc18f6225be3c6c23a61c9a8db6f431e4d29', 'b716150f9d8f253cc5400ad3bdea09a0be6ee0fa09e108d469d0497de91df4f82e2b86c3184808c2', 0, '2022-06-08 16:07:32');
+INSERT INTO `oauth_refresh_tokens` VALUES ('462295d0d8ac3086c4e4a68958804f58f2fe92dafd9bff9ac790b542dea73fee5f88d7ac903915c6', 'd36b521c851c9cd7fef8b177f4f8f49544535548c619615dbca8b825834d3f215a34f9e0302b76b6', 0, '2022-06-08 16:35:05');
+INSERT INTO `oauth_refresh_tokens` VALUES ('f183f3b90c5634a416bd418df67b5151a9d74aaadf397f6f064e5f08cc364d4414be08d2b52ea94a', 'd310f2e0a2cf22b96e62a2972f1bd15e327460cf635d6eb66890f0312de3978ac0eefc42f177ab9f', 0, '2022-06-08 16:35:22');
+INSERT INTO `oauth_refresh_tokens` VALUES ('4ff4e68aebffb535e144da4ac2646c988f68c9c22beb29d96263420b57e8d8666c8726aa607c0137', 'f51f8d4279acda855795722c17c6facc1db187956e6e228e4bdc8fcddae5af4db26a7afb78c3da08', 0, '2022-06-08 16:40:05');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b42ce2289b4c6b0122a6f78e97b75358ae23be42b8867516c4f8d3527600abca1b4560dfefbe5af8', '1fd207dd6ee2bf01c11c72648bbdd37cdbb502d64a1367200fa475420ce1b4d4c426e1c7f4e721c6', 0, '2022-06-08 16:51:42');
+INSERT INTO `oauth_refresh_tokens` VALUES ('bd19dd5c0efb1a74c60aaf068c4145b2e57ccbd40e03a1e33f3b8106d5f7f3d400b4a5b7dc1418bc', '49003089d17e48e33f7231a0c5087027ec05ee9d8fc16f8db177290cc009e6b38cd4f8f1e5d6d41c', 0, '2022-06-08 16:54:53');
+INSERT INTO `oauth_refresh_tokens` VALUES ('3305ac83508a063460c2880d2bedaeb1bccb1d9592c6f52ec0f8d31d7290229a3b61fa728d2d47a7', 'ceb8615647f6241af1e1aebe452caa5211baf0391c12d0d133fa642e2732a71be01f75bfc1d527f9', 0, '2022-06-08 16:54:59');
+INSERT INTO `oauth_refresh_tokens` VALUES ('cdc03acd29362808111d32da2f159ce4eb002e2c32b102cd26f074781adda93812f385174ea19c77', '11bf34f9f0df1f8997def54ab88e9c1d775cbd0729bfd9210157e110722cbea87a281ca203eab67c', 0, '2022-06-08 16:55:45');
+INSERT INTO `oauth_refresh_tokens` VALUES ('4cd2f1da2bfbe2e68909279160eed1204f6f22d2395f314bf5b82e39a8a11020f8d8f009212246a4', '8253cadda34c30851d36153e91d63cdaa06f7d86c1597241de68cea6497342b5fac45512456b75ad', 0, '2022-06-08 16:56:31');
+INSERT INTO `oauth_refresh_tokens` VALUES ('f2699cc9fdb29644da734cc3fdb7f14880666a42128606d6661e2147e97438e5a7ace63d8bc47825', 'b195a7fcf14d97d04ae8f980d083dfd1ab11763cbeb32d071f2588697596d2773303c7f2546edb14', 0, '2022-06-08 16:56:37');
+INSERT INTO `oauth_refresh_tokens` VALUES ('171eadb00734c8a4de239f7535f0e22a956152f95bb21eabacca6ab3f8dda80dba98042085fdb596', 'f7efecea2e6ad6805e734ca51774d70b316733eefa1567f54b6a49f442a1206fc1f67fb47d00b99c', 0, '2022-06-08 17:00:01');
+INSERT INTO `oauth_refresh_tokens` VALUES ('64eaebfba040431b7a1d91cbcc5b50f4d7d4d7c7ed674472e1fbd2fb43a714f39b5953caf1dbcd45', 'be8d31631d62850b757d208b9e6b4bb7989825e9d8402b57949bc6402d50dcaea8e856d8a7b7b109', 0, '2022-06-08 17:00:06');
+INSERT INTO `oauth_refresh_tokens` VALUES ('420694e111df86495dbb776c4e3400764ed38af666a24ac97b37cd5be3d33273ace5b268e56c44a4', '961e572cfa3fef0ead0a440a2b8a8a99c57e596e214d4afcc5129c9b377daaccf32daee2f66c0f30', 0, '2022-06-08 17:03:53');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b70ac0f0d18db57ee2a6ec2c4ffb04727d3fc935ece13581580d6db2ad3781d7a2579972ca6e4514', '24bea1c5414f46ad0cb3609cb42588e41dde746e9bb8066ef63ccd91c8e1c0ad0c319508345503ba', 0, '2022-06-08 17:03:56');
+INSERT INTO `oauth_refresh_tokens` VALUES ('c092b67572933d01a6033bc59a4fd7eb4150238c0b23ecbcfd7e25e94d1e1ca8083ef55936c7e8ac', '0f8ab881cbe38621337ebbd6f327da3a22fd1a6795f93dead5507f6f4d2b29b9553d10e992ebc363', 0, '2022-06-08 17:04:31');
+INSERT INTO `oauth_refresh_tokens` VALUES ('7f2abc7bd8f08766d65d2fa4ee193d7aeb5376860830cfc57893d12175794b28d66aea957b4d62f8', 'd3abc7ac9d3e7b5566920bb63a7f5a83aa1f54335f366fbd981cef35306c8d0c77564f9f6847dbf3', 0, '2022-06-08 17:04:35');
+INSERT INTO `oauth_refresh_tokens` VALUES ('d66cb22c7d3be8e1f9845ba6b368ed1b61d87895ec70a473b92be7e1e2ed03f3cebceff27a160a78', 'e62816d6e05d7c2917291d8465e858180d41b266ee618525346d84d47ea653e30a4a2e09d2e37bb1', 0, '2022-06-08 17:04:49');
+INSERT INTO `oauth_refresh_tokens` VALUES ('5fe05ff766ef72be5951f4888f7fb982d05fa00b2e2e451ffd0b61d475b970a07483bea19470204f', '526828b9dc67b9d26d8e17138bb0f81294445d1acf356be33fb303752dbcd2e56ea47426d7033488', 0, '2022-06-08 17:04:55');
+INSERT INTO `oauth_refresh_tokens` VALUES ('e48aeb7d3c1b5d3d67c8b68cfefe3cf9468d3ec183a98eea3c17efa0a6c3b7d00c4972d8f22a7a1a', '18bb5de1752ca7f3bae7470e330b628987eb319c7f928d06cda4f733b31362d2b4adbf472365e0ae', 0, '2022-06-08 17:07:18');
+INSERT INTO `oauth_refresh_tokens` VALUES ('7b41c6ba2acc47a11a040067d39d747ad4ca0221a04e62c07de7a952e85e4b55bb7e448493287695', '6c291b131bbe0d423419f38b4b818a110290902bd1ae4b1b1ab8335d0336e12f8728d6337ecebce2', 0, '2022-06-08 17:07:21');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b8981a9afde42347b8e2eae66efa5e943e396beb4879109436969ac9af332c70e9ecf19a898e5421', '1d459952e91f01a6323bbb1abb43868839ebb465a9a07fc66d66e3188021e32508089dd90567372c', 0, '2022-06-08 17:08:40');
+INSERT INTO `oauth_refresh_tokens` VALUES ('8e63a67e339da920534cbec88583dbb4653695f1749db01b00c4192a9cce9273e2667cf122324d80', 'f75e0d0d1382df62a42760d58dce93374b63aeb0cfbe354b69a5ca92aa9c18b861ac89ae1efa1042', 0, '2022-06-08 17:08:42');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b42159455fd8e4ed80230585c6d2e63361e4a1ca920e66f7df4caf0d0395a12dcb22d64a828c0fed', '36e622e1e48419bfd0c22f23caf098778c7a0713d2143aa389882ec6e587fbbb8c4f30f78e27c7dc', 0, '2022-06-08 17:09:22');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b441a312f5dfbb761c10bc1e6d092be6823ab713d1b9c9022d8490ed85cc89cf7416ea40484cc27f', '635c6451db153c8f9b97ce3dd13d57dc90834ce0677bdfc57b2647faf0806caf1ffdc9ee076466a1', 0, '2022-06-08 17:09:42');
+INSERT INTO `oauth_refresh_tokens` VALUES ('4e4ed1bccb45c3f1ca5a41a7fb71a25b7587a1cfcdebbcbee9b36f707ea441a0f6b4648a1f85d033', '49c36b71643329309e1d15528f48d6aa931a2404d83b4e3fd4241a29d8a123065742d9f7d34b8b15', 0, '2022-06-08 17:11:00');
+INSERT INTO `oauth_refresh_tokens` VALUES ('bbdb2c8b5c3a37f611670865ca4cf3c43527f7e7a287ead029b57c608d001c1d04016a7968cf62fc', '2cc086a6ffd5afc40f56e0f24d44b1886e28c8cc0b7dde9e0c400ba876edb136f8087e1130425f38', 0, '2022-06-08 17:11:00');
+INSERT INTO `oauth_refresh_tokens` VALUES ('021bed7a8a018786b242e65265ed1f3126e6b953c6147eacc9d5261d7ec6cc405d4bb6b1747c7acb', 'aadfec84ca171ba491bab5402c17cb351b3b09dc297be96c3f4ceca7a27832be29bcbcab133ce2e1', 0, '2022-06-08 17:11:01');
+INSERT INTO `oauth_refresh_tokens` VALUES ('4d90dd7886568a1a3ce0cd729309f50068f0a8b91a91a9cfcd9e8d78645c55c01593934f0a5aae89', 'a6984826569d37c29452b8596881b538bbb08e12ad88efe2aca35c3e973b6a77d8b8b0b23e142d63', 0, '2022-06-08 17:11:45');
+INSERT INTO `oauth_refresh_tokens` VALUES ('bc753cac847d591abf03514b7f2c1cfa90983bc3f07c5e302e0fec58edd86680ee3470954d36f546', '4e43b6f4bf617bf21c1a71a9d60ab656e34e28060bd16d05ca7973af1b7ed5d22b52df280d7587d4', 0, '2022-06-08 17:11:46');
+INSERT INTO `oauth_refresh_tokens` VALUES ('991894a12e7ba22ab53ca1eaf3c1eb1e27739f317c43c6d154bf8b2e49783838611274cd329947ed', '8d08795c851c0c618d07e45e6b9bad00ec7ff165010859b4e6259f27dee32cc865d29abc6233f3a7', 0, '2022-06-08 17:11:47');
+INSERT INTO `oauth_refresh_tokens` VALUES ('bc40d01f0e5342d7dc8352fb6edfc532cbafa0add7006c47c248d301d49edd079e1aa912f2552fa9', '851f947a59f47cfe6b8024e6627570ac389c243c3bed57272092557f3a9d76d569051a44ec6d5438', 0, '2022-06-08 17:11:49');
+INSERT INTO `oauth_refresh_tokens` VALUES ('3d036524c72e81dbc966f8ba75807d729c5af92bd4dd22e1fde5aceaff3b78550a8170e68bfa67ba', '74ba439d7051e6309afa5bdce91e4dc73825f82807d3ed19d22806b67efa95490a5fa477c4275991', 0, '2022-06-08 17:11:51');
+INSERT INTO `oauth_refresh_tokens` VALUES ('52589ce8d3b9829f06dda40567c24cd5a846404ce092bcbccc1c063a5255530ce028aa1b6b1550f6', 'e9a87eb6efefec24a8b9d677cf9515baf80b4d67eccc08716d2b5c112d27727c67f534d54cde52ac', 0, '2022-06-08 17:11:52');
+INSERT INTO `oauth_refresh_tokens` VALUES ('9ef25d65d96269026baaf92566ce5436ca23c779a90cfff9833bb6e1f1d3a2eb223cba8c460b5fa2', '328376c4208f4b40775310f8365d283cdd0e917114a13a29b435d07d41c6dba36a5a63716c8c022c', 0, '2022-06-08 17:11:53');
+INSERT INTO `oauth_refresh_tokens` VALUES ('9e48f4fb00d5fbc22c67bff12114f8b4bcaf30dc7b54f3cba85b0b268ad3baf120db5f5973b769b1', 'b94e7eef30aac6bda42b2d8d3d1cb445417229949429491565e5db5a933c66cb5b53c4e97d38521d', 0, '2022-06-08 17:11:54');
+INSERT INTO `oauth_refresh_tokens` VALUES ('8c777d9403d66d40b857313a385dceb2a4df9f83bbe59445ccd65c96c9bd9480c007e705d606532c', '98fe77c57dbc4f66f7f15d2361394514c9a52d745438a26137b41c1184efe42f05bbf09ea6d7f30d', 0, '2022-06-08 17:11:55');
+INSERT INTO `oauth_refresh_tokens` VALUES ('9cf373e1799f01554195d4362cc6e912f752009e149508518f078b3b03387e6143f035d3eaf68828', '895bf56755b2f0987c2695b7c37ceb860036442652df63866686fd8e7dc06f196905862d85a759c8', 0, '2022-06-08 17:11:55');
+INSERT INTO `oauth_refresh_tokens` VALUES ('30faae998369920a63bbdca541ba95669bbd1616af807c2c5dd7d1e98b4bf20cb71d499b55f849b4', 'c1c19429e95119c8401d445f6236c087b39c6081209cc0532f13d960abb208e7e23ba9a6bdfc8d67', 0, '2022-06-08 17:11:56');
+INSERT INTO `oauth_refresh_tokens` VALUES ('460fe1d9f1147e7978275a53541b65d46090c8f6710602754359b86c517402e41057f210ca532f06', '719ec69fb4837c74a204617c2df1c9a6b89124947efb008673cb4b2c086da363b924abe3008ee818', 0, '2022-06-08 17:11:57');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b9eb29ff216af67884d0330686e3362c886392ef8012af2f3070a339466380b397f6afb94779d34d', '1677264b7561e6bf22bb5d0613f4ec8d6fc8472e22a5696c65fe65dc56d4bd6607d96d1cc2e8106d', 0, '2022-06-08 17:11:58');
+INSERT INTO `oauth_refresh_tokens` VALUES ('46b42bc277338edb0b483617538f6740eefdabc60da9f1147b4c13a893e91eccbf74ae1fc76fe841', 'd4e41171aa973469460b788a04ffebe864df4abc3a7ba1707adc6ab16c68a6a796b9f2932a9f4791', 0, '2022-06-08 17:11:59');
+INSERT INTO `oauth_refresh_tokens` VALUES ('8ac3fd1f80f13e7ac47b725828040acc094ec9f51e461c7b617e8e16bc82aaa51c83de4bed01b8fc', '20da8b9e094b3da5b22742875b55b99e9806ff878b12e23a334545319d841e87a55997d34553433c', 0, '2022-06-08 17:12:00');
+INSERT INTO `oauth_refresh_tokens` VALUES ('360206ec9e59b9a04df4fc24ba230ef7def130e9ff0faaf9483b676698db7d0e9b9b010ef541086b', '830a0fa5117f47ac63bf40cccbbb46d38b098052ba6859f8efb13f02529d2b50a21f40883f8ed225', 0, '2022-06-08 17:12:01');
+INSERT INTO `oauth_refresh_tokens` VALUES ('169d636f50f40fd2c9d8eb7c3173d4f88a8329e5448809548fe1fe29852977a04502f6fb3b68e1a2', 'a4aca4aceec9886cafbbd270090aad249208e718e126e32450fbccad0e0c071701a456c92e2d5858', 0, '2022-06-08 17:12:02');
+INSERT INTO `oauth_refresh_tokens` VALUES ('ac853bb644c2aa8a01030d2fa3bb80ca98f5448820227bc5ae5c3ae9e31424be75a57f9daa817687', '1e792d3a5a7398499d1f175384c071f524e31bc5daebfaaa9f8797bc03601f8e98ce3682c4ad0110', 0, '2022-06-08 17:12:03');
+INSERT INTO `oauth_refresh_tokens` VALUES ('62f305978293e9f746f27da714f2e61701847ea0417b789a205dbe760bc66e82c7f11483ea25aa0f', '84f078785ce0d1a17a1c4b917d6c460c4ad81c053af8f3cdd36cc03815486fc47f5c11ca22035026', 0, '2022-06-08 17:12:34');
+INSERT INTO `oauth_refresh_tokens` VALUES ('441e2381d7dead2404c14a97838a83eaa058a5be767d0de387a4285fefae88023edf1b00ea3eb6ac', '4ae4a7339e9bb5e69dda25df7e599b7a251194a21882b9ba7fa60133e28ddc785eec17f7a2d8c455', 0, '2022-06-08 17:12:35');
+INSERT INTO `oauth_refresh_tokens` VALUES ('32d25f7e90ef6610b27ef75b77b15050574226714b2c8e145efbf8b432b5fb0f54444dda9eb144a7', '6470a4e9aa13a65c47358f936d32d523260124bb43386227e251d099777e4b83982d09d3ab788eeb', 0, '2022-06-08 17:12:36');
+INSERT INTO `oauth_refresh_tokens` VALUES ('2c2eadf592604d6be06fea660384e8601d33d5c82ac826f0fbfde9f6f590b2e20598bcf5a9b77869', 'c05216833e1864035bdd660259561c34fa9023defec509479d07984911570830106025300333a219', 0, '2022-06-08 17:12:37');
+INSERT INTO `oauth_refresh_tokens` VALUES ('ee46627ffd81f7566c147f25b7b3674811ad632a062f5429b56e7e3dbbfb91ebe2f09a1167355c7a', 'e5ef25e943eb70d973dde0dc5f400fb53cb783a5d1e7412c4e0cd2b222691bc5ae51d57551a49ebc', 0, '2022-06-08 17:12:38');
+INSERT INTO `oauth_refresh_tokens` VALUES ('2ffb4a884749fded22e065e420285f99f7920f0dd629988e079f5eb87af97e07334504a15a91f9ac', 'ab595936fb610bdbe9d134efebb9abcd5fa42b4a5c53c3907780c47c9fc1eb0a58ec997ef5cfab76', 0, '2022-06-08 17:12:39');
+INSERT INTO `oauth_refresh_tokens` VALUES ('86c26e0ae379bcd46a3abe23f0c96306364fa7f077f7ff49cb2add24e1bdae34caa14afda73c101e', 'f8ceb2bb584323093ac44931382330c7d1a445b2e21bf9d33838aeafc45e4cee442d3f59745b6c69', 0, '2022-06-08 17:12:41');
+INSERT INTO `oauth_refresh_tokens` VALUES ('2a2c9853a36423a09449dbc4a1ea4de76f5c87387200767d1bbd2b4dc57266ccf15f1e9c6e5cf4ac', '5ffe8a191152118c8b778298b591ff3fdd2a594b37fc862f43e8b5d50c7880d1ae623849aa976d90', 0, '2022-06-08 17:12:42');
+INSERT INTO `oauth_refresh_tokens` VALUES ('bfb777107a563b9396c7d072516a400e3414bf83a51cfcf52ad1a0c66cd241ed85591ffa44a9b462', '1dbf46cc998f3729a4338e10c44cdf3233f9aafa29567937d6d261aac6ea45363a48ba2a4f590aa0', 0, '2022-06-08 17:12:43');
+INSERT INTO `oauth_refresh_tokens` VALUES ('ace7b3bc5fb2c7c656ec95d8d1f8e6be81af098cc3368efc4d27cbbdc5badc0efb30844cf8e17a09', '34bfef70853320aa1e47df590ed0d102f90fae0815f287c5afa3e2823840a266ee8246bf86c28aae', 0, '2022-06-08 17:12:44');
+INSERT INTO `oauth_refresh_tokens` VALUES ('45926c4822a19b9e555fbe29d9bc28a5080ce6f98a87947898107f93a0205f9495255aa843215e9f', '10dbcaf67870580b84cb669f9240fc6409a6f3ba537e483349633bec9ad64cc34c2ff7630dafd48a', 0, '2022-06-08 17:12:45');
+INSERT INTO `oauth_refresh_tokens` VALUES ('fdd79e559398fe464ec0f9e3dd32dba1f2f5dac3bbdbf8671187734aff569202198da080bd31882a', '6185b7ab58445e431449b591934c9b3c943581f5987a91475509eb188923d07fa29dc0703fb19c4a', 0, '2022-06-08 17:12:46');
+INSERT INTO `oauth_refresh_tokens` VALUES ('845ba31184266046a719d2348822644ccb40a684d14c953f805f39ed74e5657f84a7a56dae2ad1b6', '2e4b1a14806a5d1645a40ba29f7b6c9a4aad285b670477baa4455d97662d19f4cedefcb5b44f56a6', 0, '2022-06-08 17:12:47');
+INSERT INTO `oauth_refresh_tokens` VALUES ('c1b468d951a5cd7e4061d4b874bf3b121b72c320a863bbc12186fddbe016affc126e6454e76053b1', '758b25bbe72873a95cb9eb28f2ab80912caebcdca2617375381b14b39c91438fd1ff643d04e0e194', 0, '2022-06-08 17:12:48');
+INSERT INTO `oauth_refresh_tokens` VALUES ('9c603ce147e95c5f9d2c842d2885de6908c69b4a2b6dd3c7668a6532655f6d08a28b5a7805b30720', 'c6abfc6da814bc447170256daff01d4d9bb7d1e37b0a2173e23db5493d0dcbfb4fb10de5cfc46e12', 0, '2022-06-08 17:12:48');
+INSERT INTO `oauth_refresh_tokens` VALUES ('01aa2a510044edb9c221725ae4975709906fe91d0307aac1cc0d8571ccaa48099df3c2ef818266ae', '4cc9d78a7cf28d33d16f35404ff72c347de4ae132a5ecdb6dd8140c31e269f26a45bb01a26f457eb', 0, '2022-06-08 17:12:49');
+INSERT INTO `oauth_refresh_tokens` VALUES ('b1a346c4b40e689a1d5ba656eb62d79b47e5b0cff2920ed1019e427a474b351cdb016260c320026b', '425c4c162473532f1c2b022af4fe057eec8a763a9ff52bf7e0b2236c8ba63e88603c079bdaa73cf1', 0, '2022-06-08 17:12:50');
+INSERT INTO `oauth_refresh_tokens` VALUES ('62dc53c5a9b5cdad038f040c882b4d5a95742d073cb5124c1277e339b401aea477d32b3db6a6ad4e', '1c3772b646aee078206139de306eb9ebef3b7c38869cec7fb70bc7efd7f64678a983a177f2a7b645', 0, '2022-06-08 17:12:51');
+INSERT INTO `oauth_refresh_tokens` VALUES ('3d9a8ad36ee183dc8e2e8dc93e03ef35cedab1af50b996a6af2a862b7f05ca9e272ab891c05fb3b2', '925e8acfd1d7510ce3e9ca3b6b906cbbb6fd464f3ce2431f80939b47f523ca1870372cd3710c31b9', 0, '2022-06-08 17:12:52');
+INSERT INTO `oauth_refresh_tokens` VALUES ('2c449e1a229df3b6bb06eb11e53d415c7885a6bb6f67ae2475bce3dd6400cc8acce00452a8bb0598', 'a6565a7aea2468c63c1e25e46fa9348ea1a687edca982267b46ce02e47ff3aff240a9fcf23b73f4d', 0, '2022-06-08 17:12:53');
+INSERT INTO `oauth_refresh_tokens` VALUES ('7896bdaf52ef0ff0eb08515946ce6ea60f0a7a59f79a6b7ae0c3460247d7cc4586a2e176d22ac7eb', '07758b6721393c4cac2dc050960975685d77a134258cc11873a11e194a0a876377457cdda3f0fac6', 0, '2022-06-08 17:13:06');
+INSERT INTO `oauth_refresh_tokens` VALUES ('efba240ec45a5596a6a5d9e2f5566ab8ccef9ac2f4d165b65c1e06d9a8a1d076493466b02e3c51b0', '09150b2fc1b37777ad7a7d4d77641e2410730fe431daad818f107e3dc3ac8b0932ad14c62f1d172b', 0, '2022-06-08 17:13:07');
+INSERT INTO `oauth_refresh_tokens` VALUES ('07597cf61e184d317af635fa7cf452d62eaf11864196125bb41ee68824691eb82a97c985de913bd3', '271235be33ae3230ba52851418773bb020511e0f21181fd4cf35f6235c83cce98183350fb898bd62', 0, '2022-06-08 17:13:08');
+INSERT INTO `oauth_refresh_tokens` VALUES ('8acb2865a59112e2875118b73ab6ca8fe9169ee6cdd67b4697b1a3c5353e48dd0a316a923f1a1efc', '14bccc0ee3613d689a37b9196cb11d12c52878edf761a5868c929955d1907c08e65e7e23854cf1c2', 0, '2022-06-08 17:13:10');
+INSERT INTO `oauth_refresh_tokens` VALUES ('cde3db485b48a4ac76d1b71d8d3e5ebe67f52a54090b04250339b9fe4fde5deb1a8274fdd9700a5f', 'b6bd83c473eb58ddf4b757c4746b5044ea6c6189bd275d8fbf0046e0d301750a1935190ddcb33245', 0, '2022-06-08 17:13:11');
+INSERT INTO `oauth_refresh_tokens` VALUES ('375edaf3d6d951dd0180dd2a1f641159a7a11727acdbb443d53efe52229f3e96ff1d6de106d0b1ee', 'f7e9cc1bc3c2fb01895e64750ce6ab7a1ef39898900f4b42eedd503ed70c16b42a483b7616d00463', 0, '2022-06-08 17:13:12');
+INSERT INTO `oauth_refresh_tokens` VALUES ('0459f1045d44b8bff7eba66cdf331f2ad78a7ec1cb948cad61e2c115b22fdad65202f6b7e1521ad1', '090fe6bb95f6f4626f19665e3d6c7547dc814eea5013b7bace609db6cb62d3561f1301fff97a575e', 0, '2022-06-08 17:13:13');
+INSERT INTO `oauth_refresh_tokens` VALUES ('88395f2bb8c0918ebf43da9b03adb8ea8782a0db71af406cfab7aecf6e46103fe4b19ecfc76590ff', '2d7587f64a35d5233165d44fa349cfc2cfb82e7c5585470630c1fa24dd36ef6d6b476e51f6aa8641', 0, '2022-06-08 17:13:14');
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -88,6 +337,23 @@ CREATE TABLE `profile`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for profiles
+-- ----------------------------
+DROP TABLE IF EXISTS `profiles`;
+CREATE TABLE `profiles`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `ima_profile` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of profiles
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -100,17 +366,30 @@ CREATE TABLE `users`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'christian modificado', 'paez modificado', 'descripcion de christian modificada', 'prueba@gmail.com', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL);
-INSERT INTO `users` VALUES (13, 'dfdfdfdfdf', 'dfdfdfdf', 'dfsdfdff', 'dfsdfdfsdfdf@ddd.com', '2021-06-04 20:08:06', '2021-06-04 20:08:06', NULL);
-INSERT INTO `users` VALUES (5, 'pepito', 'ramirez', 'descripcion de pepito', 'ramirez@prueba.com', '2021-06-04 17:34:36', '2021-06-04 07:28:08', NULL);
-INSERT INTO `users` VALUES (12, 'contacto', 'prueba', 'pruebaasss', 'dccccccc@dddd.com', '2021-06-04 19:16:05', '2021-06-04 19:16:48', '2021-06-04 07:16:48');
-INSERT INTO `users` VALUES (10, 'maria', 'gonzales', 'descripcion de maria', 'superusuario@pms.com.ve', '2021-06-04 18:01:03', '2021-06-04 20:07:51', '2021-06-04 08:07:51');
+INSERT INTO `users` VALUES (1, 'christian modificado', 'paez modificado', 'descripcion de christian modificada', 'prueba@gmail.com', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, 'prueba@gmail.com', NULL);
+INSERT INTO `users` VALUES (13, 'dfdfdfdfdf', 'dfdfdfdf', 'dfsdfdff', 'dfsdfdfsdfdf@ddd.com', '2021-06-04 20:08:06', '2021-06-04 20:08:06', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (5, 'pepito', 'ramirez', 'descripcion de pepito', 'ramirez@prueba.com', '2021-06-04 17:34:36', '2021-06-04 07:28:08', NULL, 'prueba@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+INSERT INTO `users` VALUES (24, 'Lindsay', 'Ferguson', 'descripcion de christian modificada', 'lindsay.ferguson@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (23, 'Michael', 'Lawson', 'descripcion de christian modificada', 'michael.lawson@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (22, 'Tracey', 'Ramos', 'descripcion de christian modificada', 'tracey.ramos@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (21, 'Charles', 'Morris', 'descripcion de christian modificada', 'charles.morris@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (17, 'George', 'Bluth', 'descripcion de christian modificada', 'george.bluth@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (18, 'Janet', 'Weaver', 'descripcion de christian modificada', 'janet.weaver@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (19, 'Emma', 'Wong', 'descripcion de christian modificada', 'emma.wong@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (20, 'Eve', 'Holt', 'descripcion de christian modificada', 'eve.holt@reqres.in', '2021-06-02 13:55:52', '2021-06-04 07:28:05', NULL, NULL, NULL);
+INSERT INTO `users` VALUES (25, 'Tobias', 'Funke', 'descripcion de christian modificada', 'tobias.funke@reqres.in', '2021-06-02 13:55:52', '2021-06-07 19:56:43', '2021-06-07 07:56:43', NULL, NULL);
+INSERT INTO `users` VALUES (26, NULL, NULL, NULL, 'llakin@example.net', '2021-06-07 20:58:56', '2021-06-07 20:58:56', NULL, 'isabel58@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+INSERT INTO `users` VALUES (27, NULL, NULL, NULL, 'heidi.kozey@example.com', '2021-06-08 13:34:00', '2021-06-08 13:34:00', NULL, 'gfeeney@example.net', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+INSERT INTO `users` VALUES (28, NULL, NULL, NULL, 'laury68@example.com', '2021-06-08 13:50:32', '2021-06-08 13:50:32', NULL, 'mohr.raheem@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+INSERT INTO `users` VALUES (29, NULL, NULL, NULL, 'coderchris@prueba.com', NULL, NULL, NULL, 'coder chris', '$2y$10$LWDIWeNHCCot7t3AFWTcM.f5unofd4nX3TSbZQWmkcE91N.sYCqMy');
 
 SET FOREIGN_KEY_CHECKS = 1;
